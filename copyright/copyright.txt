@@ -1,0 +1,11 @@
+/**
+ * \file
+ * \brief
+ * \copyright
+ * Copyright Utah State University Research Foundation.\n
+ * All rights reserved except as specified below.\n
+ * This information is protected by a Non-Disclosure/Government Purpose
+ * License Agreement and is authorized only for United States Federal
+ * Government use.\n
+ * This information may be subject to export control.
+ */
