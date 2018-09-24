@@ -25,5 +25,32 @@ if (cr_clang_tidy)
     set(CMAKE_CXX_CLANG_TIDY "clang-tidy" "-fix-errors")
 endif()
 
+# set up clang-format
+# I've seen issues in the past where even minor version changes to clang-format can drastically
+# change the output. So, if clang-format is installed, it must be the exact same version.
+find_program(cr_clang_format clang-format)
+if (cr_clang_format)
+    execute_process(
+        COMMAND clang-format -version
+        OUTPUT_VARIABLE cr_clang_format_version
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    if (NOT cr_clang_format_version MATCHES "clang-format version 6.0.0.*")
+        message(WARNING "Clang-format version does not match the official version. Clang-format target disabled.")
+    else()
+        # run clang-format on all the header and source files in the repository
+        file(GLOB_RECURSE cr_source_files
+            LIST_DIRECTORIES false
+            RELATIVE "${CMAKE_SOURCE_DIR}"
+            "*.[ch]pp"
+        )
+        add_custom_target(format
+            COMMAND clang-format -i -style=file ${cr_source_files}
+            WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+            COMMENT "Formatting the code."
+        )
+    endif()
+endif()
+
 find_package(Qt5 REQUIRED COMPONENTS Core)
 add_subdirectory(application) # the actual copyright application
