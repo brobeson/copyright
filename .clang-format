@@ -3,14 +3,13 @@ Language: Cpp
 BasedOnStyle: LLVM
 AccessModifierOffset: -4
 AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
 AlignEscapedNewlines: Left
 AllowAllParametersOfDeclarationOnNextLine: false
-AllowShortCaseLabelsOnASingleLine: true
 AlwaysBreakTemplateDeclarations: true
 BinPackArguments: false
 BinPackParameters: false
 BraceWrapping:
+  AfterClass: true
   AfterControlStatement: true
   AfterEnum: true
   AfterFunction: true
