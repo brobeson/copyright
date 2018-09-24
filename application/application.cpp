@@ -9,8 +9,8 @@ namespace cr
 {
     namespace
     {
-        // NOLINTNEXTLINE(google-runtime-references)
         // passing by non-const-reference is the only way to modify a QCommandLineParser
+        // NOLINTNEXTLINE(google-runtime-references)
         void setup_command_parser(QCommandLineParser& parser)
         {
             // parser.addPositionalArgument(
@@ -45,6 +45,8 @@ namespace cr
                                std::istreambuf_iterator<char>{}};
         }
 
+        // Cppcheck is false reporting that this is not used. It is used in format_log_message().
+        // cppcheck-suppress unusedFunction
         std::ostream& operator<<(std::ostream& stream, const QtMsgType type)
         {
             constexpr std::string_view RED{"\033[0;31m"};
