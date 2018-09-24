@@ -5,19 +5,19 @@
 
 namespace cr
 {
-  class application final : public QCoreApplication
-  {
-  public:
-    application(int argc, char* argv[]);
-    application(const application&) = delete;
-    application(application&&) = delete;
-    application& operator=(const application&) = delete;
-    application& operator=(application&&) = delete;
-    ~application() noexcept override = default;
+    class application final : public QCoreApplication
+    {
+    public:
+        application(int argc, char* argv[]);
+        application(const application&) = delete;
+        application(application&&)      = delete;
+        application& operator=(const application&) = delete;
+        application& operator=(application&&) = delete;
+        ~application() noexcept override      = default;
 
-  private:
-    std::string m_copyright_text;
-  };
+    private:
+        std::string m_copyright_text;
+    };
 } // namespace cr
 
 #endif
