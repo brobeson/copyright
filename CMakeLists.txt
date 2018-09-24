@@ -22,6 +22,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED on)
 #                                                    set up clang-tidy to run as part of the build
 #--------------------------------------------------------------------------------------------------
 find_program(cr_clang_tidy clang-tidy)
+mark_as_advanced(cr_clang_tidy)
 if (cr_clang_tidy)
     # just the command. everything else is configured in the .clang-tidy file
     set(CMAKE_CXX_CLANG_TIDY "clang-tidy" "-fix-errors")
@@ -31,6 +32,7 @@ endif()
 #                                                        set up a build target to run clang-format
 #--------------------------------------------------------------------------------------------------
 find_program(cr_clang_format clang-format)
+mark_as_advanced(cr_clang_format)
 if (cr_clang_format)
     # I've seen issues in the past where even minor version changes to clang-format can drastically
     # change the output. So, if clang-format is installed, it must be the exact same version.
@@ -60,6 +62,7 @@ endif()
 #                                                            set up a build target to run Cppcheck
 #--------------------------------------------------------------------------------------------------
 find_program(cr_cppcheck cppcheck)
+mark_as_advanced(cr_cppcheck)
 if (cr_cppcheck)
     # Using Cppcheck within CMake does not cause the build to fail, even with --error-exitcode. Use
     # the CMake variable so errors can be reported at build time. But also add a target to run
@@ -85,6 +88,7 @@ endif()
 #                                               set up a build target to run Lizard (CCN analysis)
 #--------------------------------------------------------------------------------------------------
 find_program(cr_lizard lizard)
+mark_as_advanced(cr_lizard)
 if (cr_lizard)
     add_custom_target(lizard
         COMMAND lizard --CCN 10 --length 30 --arguments 6 --warnings_only --modified ./
@@ -94,4 +98,6 @@ if (cr_lizard)
 endif()
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
+mark_as_advanced(Qt5Core_DIR Qt5_DIR)
+
 add_subdirectory(application) # the actual copyright application
