@@ -81,5 +81,17 @@ if (cr_cppcheck)
     )
 endif()
 
+#--------------------------------------------------------------------------------------------------
+#                                               set up a build target to run Lizard (CCN analysis)
+#--------------------------------------------------------------------------------------------------
+find_program(cr_lizard lizard)
+if (cr_lizard)
+    add_custom_target(lizard
+        COMMAND lizard --CCN 10 --length 30 --arguments 6 --warnings_only --modified ./
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        COMMENT "Running Lizard complexity analysis..."
+    )
+endif()
+
 find_package(Qt5 REQUIRED COMPONENTS Core)
 add_subdirectory(application) # the actual copyright application
