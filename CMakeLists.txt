@@ -19,11 +19,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 
 # set up clang-tidy to run as part of the build
-#find_program(cr_clang_tidy clang-tidy)
-#if (cr_clang_tidy)
-#    # just the command. everything else is configured in the .clang-tidy file
-#    set(CMAKE_CXX_CLANG_TIDY "clang-tidy -fix-errors")
-#endif()
+find_program(cr_clang_tidy clang-tidy)
+if (cr_clang_tidy)
+    # just the command. everything else is configured in the .clang-tidy file
+    set(CMAKE_CXX_CLANG_TIDY "clang-tidy" "-fix-errors")
+endif()
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
 add_subdirectory(application) # the actual copyright application

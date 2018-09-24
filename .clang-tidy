@@ -1,0 +1,18 @@
+---
+# WarningsAsErrors should match Checks
+# excluded checks, and rationale:
+# -fuchsia*           - I disagree with Fuchsia's limmitations
+# -llvm-header-guard  - this is problematic without being able to specify a guard pattern
+# -objc*              - this project does not contain any Objective C code
+Checks:           'clang-diagnostic-*,clang-analyzer-*,*,-fuchsia*,-llvm-header-guard,-objc*'
+WarningsAsErrors: 'clang-diagnostic-*,clang-analyzer-*,*,-fuchsia*,-llvm-header-guard,-objc*'
+HeaderFilterRegex: '.*' # analyze all the header files
+AnalyzeTemporaryDtors: false
+FormatStyle: file
+
+# using default options for the checks for now. i'm leaving one example here, commented out, for
+# reference if any options need to be altered in the future.
+#CheckOptions:    
+#  - key:   bugprone-argument-comment.StrictMode
+#    value: '0'
+...

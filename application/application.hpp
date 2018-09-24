@@ -13,11 +13,11 @@ namespace cr
     application(application&&) = delete;
     application& operator=(const application&) = delete;
     application& operator=(application&&) = delete;
-    ~application() noexcept = default;
+    ~application() noexcept override = default;
 
   private:
     std::string m_copyright_text;
   };
-}
+} // namespace cr
 
 #endif

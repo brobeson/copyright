@@ -1,13 +1,15 @@
 #include "application.hpp"
 #include <QCommandLineParser>
 #include <QDebug>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string_view>
 
 namespace cr
 {
   namespace
   {
+    // NOLINTNEXTLINE(google-runtime-references) returning a parse from the function doesn't work
     void setup_command_parser(QCommandLineParser& parser)
     {
       //parser.addPositionalArgument(
@@ -45,10 +47,10 @@ namespace cr
 
     std::ostream& operator<<(std::ostream& stream, const QtMsgType type)
     {
-      constexpr char RED[]      = "\033[0;31m";
-      constexpr char BLUE[]     = "\033[0;34m";
-      constexpr char YELLOW[]   = "\033[0;33m";
-      constexpr char NO_COLOR[] = "\033[0m";
+      constexpr std::string_view RED{"\033[0;31m"};
+      constexpr std::string_view BLUE{"\033[0;34m"};
+      constexpr std::string_view YELLOW{"\033[0;33m"};
+      constexpr std::string_view NO_COLOR{"\033[0m"};
 
       switch (type)
       {
@@ -75,7 +77,9 @@ namespace cr
                              const QMessageLogContext& context)
     {
       if (context.file != nullptr)
+      {
         stream << "(" << context.file << ":" << context.line << ") ";
+      }
       return stream;
     }
 
@@ -88,9 +92,11 @@ namespace cr
         std::cout << type << context << message.toStdString() << std::endl;
       }
       else
+      {
         std::cerr << type << context << message.toStdString() << std::endl;
+      }
     }
-  }
+  } // namespace
 
   application::application(int argc, char* argv[]):
     QCoreApplication(argc, argv)
@@ -119,4 +125,4 @@ namespace cr
 
     m_copyright_text = read_copyright_file(parser.value("copyright_file"));
   }
-}
+} // namespace cr
