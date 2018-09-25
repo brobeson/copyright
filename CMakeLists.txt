@@ -17,7 +17,16 @@ project(copyright
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
-add_compile_options(-Wall -Werror -Wpedantic -Wextra)
+add_compile_options(
+    -fstack-protector-strong
+    -Wall
+    -Werror
+    -Wpedantic
+    -Wextra
+    -Wfloat-equal
+    -Wshadow
+    -Wstack-protector
+)
 
 #--------------------------------------------------------------------------------------------------
 #                                                    set up clang-tidy to run as part of the build
