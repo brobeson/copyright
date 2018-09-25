@@ -26,6 +26,8 @@ mark_as_advanced(cr_clang_tidy)
 if (cr_clang_tidy)
     # just the command. everything else is configured in the .clang-tidy file
     set(CMAKE_CXX_CLANG_TIDY "clang-tidy" "-fix-errors")
+else()
+    message(AUTHOR_WARNING "Clang-tidy is not installed; clang-tidy will not be enabled.")
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -56,6 +58,8 @@ if (cr_clang_format)
             COMMENT "Formatting the code..."
         )
     endif()
+else()
+    message(AUTHOR_WARNING "Clang-format is not installed; the clang-format target will not be enabled.")
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -82,6 +86,8 @@ if (cr_cppcheck)
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         COMMENT "Running Cppcheck..."
     )
+else()
+    message(AUTHOR_WARNING "Cppcheck is not installed; the cppcheck target will not be enabled.")
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -95,6 +101,8 @@ if (cr_lizard)
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
         COMMENT "Running Lizard complexity analysis..."
     )
+else()
+    message(AUTHOR_WARNING "Lizard is not installed; the lizard target will not be generated.")
 endif()
 
 find_package(Qt5 REQUIRED COMPONENTS Core)
