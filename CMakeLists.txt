@@ -9,6 +9,11 @@ if (NOT UNIX)
     message(FATAL_ERROR "Your platform is not yet supported.")
 endif()
 
+if (NOT DEFINED CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug Release RelWithDebInfo MinSizeRel")
+endif()
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug;Release;RelWithDebInfo;MinSizeRel")
+
 project(copyright
     VERSION 0
     DESCRIPTION "A tool to maintain copyright information in software source files."
