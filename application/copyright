@@ -6,10 +6,12 @@ import sys
 
 __version__ = '0.0.0'
 
+#def read_header_text(file_path):
+
 def exit_if_arguments_are_invalid(arguments):
-    if arguments['header_file'] is not None:
-        if not os.path.isfile(arguments['header_file']):
-            sys.exit('error: ' + arguments['header_file'] + ' does not exist.')
+    if arguments['header_file'] is not None and \
+        not os.path.isfile(arguments['header_file']):
+        sys.exit('error: ' + arguments['header_file'] + ' does not exist.')
 
 def make_parser():
     parser = argparse.ArgumentParser(
