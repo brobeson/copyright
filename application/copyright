@@ -30,6 +30,5 @@ def make_parser():
 if __name__ == '__main__':
     parser = make_parser()
     arguments = vars(parser.parse_args())
-    print(arguments)
     exit_if_arguments_are_invalid(arguments)
     sys.exit()
