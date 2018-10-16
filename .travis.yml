@@ -1,6 +1,8 @@
 language: python
 python:
     - '3.6'
+install:
+    - pip install lizard
 script:
     - cp application/copyright application/copyright.py
     - lizard --CCN=10 --length=2 --arguments=6 --warnings_only --modified application/copyright.py
