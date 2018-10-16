@@ -7,11 +7,11 @@ branches:
         - /.*/
 python:
     - '3.6'
-#install:
-#    - pip install lizard
+before_install:
+    - pip install lizard
 script:
-    #- cp application/copyright application/copyright.py
-    #- lizard --CCN=10 --length=2 --arguments=6 --warnings_only --modified application/copyright.py
-    #- rm application/copyright.py
+    - cp application/copyright application/copyright.py
+    - lizard --CCN=10 --length=2 --arguments=6 --warnings_only --modified application/copyright.py
+    - rm application/copyright.py
     - application/copyright --version
     - application/copyright --help
