@@ -11,8 +11,8 @@ python:
     - '3.5'
     - '3.6'
     - '3.7-dev'
-before_install:
-    - pip install lizard
+#before_install:
+#    - pip install lizard
 script:
     - chmod 744 lint.sh && ./lint.sh
     - application/copyright --version
